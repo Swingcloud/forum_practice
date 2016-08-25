@@ -1,0 +1,12 @@
+<h1>Swingcloud Forum</h1>
+
+<% @posts.each do |p| %>
+<h3><%= link_to p.title, posts_path %></h3>
+<% end %>
+
+<%= form_for @post do |f| %>
+
+		<%= render :partial => "form", :locals => {:f => f} %>
+
+    <%= f.submit "送出" , :class =>"btn btn-primary"%>
+<% end %>
