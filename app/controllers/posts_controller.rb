@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :set_post, :only => [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, :except => [:index]
 
 	#GET posts/index
@@ -32,14 +33,28 @@ class PostsController < ApplicationController
 
 	#GET /posts/:id
 	def show
-		@post = Post.find(params[:id])
+		
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		
+	end
+
+	def update
+		
+		if @post.update(params_permitted)
+			flash[:notice]="編輯成功"
+			redirect_to post_path(@post)
+		else
+			render :action => :edit
+		end
 	end
 
 	private
+
+	def set_post
+		@post = Post.find(params[:id])
+	end
 
 	def params_permitted 
 		params.require(:post).permit(:title, :content)
