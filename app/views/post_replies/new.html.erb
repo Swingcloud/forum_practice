@@ -1,0 +1,7 @@
+<%= form_for @reply,:url => post_responses_path(@post) do |f| %>
+
+	<%= render :partial => "form", :locals => {:f => f} %>
+
+    <%= f.submit "送出回覆" , :class =>"btn btn-primary"%>
+ <%end %>
+ Hey

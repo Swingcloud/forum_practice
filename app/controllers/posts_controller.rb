@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
 	#GET /posts/:id
 	def show
-		
+		@replies = @post.replies
 	end
 
 	def edit
