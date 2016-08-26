@@ -12,7 +12,7 @@
 <td><h3><%= link_to p.title, post_path(p) %></h3></td>
 <td><h3><%= p.user.email %></h3></td>
 <td><%= link_to "編輯", edit_post_path(p) %></td>
-<td></td>
+<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
 <% end %>
 </tr>
 </table>

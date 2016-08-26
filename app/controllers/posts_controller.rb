@@ -50,6 +50,12 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@post.destroy
+		flash[:alert] = "刪除成功"
+		redirect_to posts_path
+	end
+
 	private
 
 	def set_post
