@@ -10,7 +10,7 @@
 
   <body>
     <% if current_user %>
-      Hi, <%= current_user.email%>
+      Hi, <%= current_user.try(:short_name) %>
       <%= link_to('登出', destroy_user_session_path, :method => :delete) %> 
       <%= link_to('修改密碼', edit_registration_path(:user)) %>
     <% else %>
