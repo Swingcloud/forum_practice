@@ -1,3 +1,11 @@
+<% if @post.errors.any? %>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>
+
 <%= f.label :title, "標題" %>
 <%= f.text_field :title %>
 
