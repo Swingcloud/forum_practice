@@ -9,5 +9,9 @@
 <%= f.label :title, "標題" %>
 <%= f.text_field :title %>
 
+<div class="form-group">
+ <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+</div>
+
 <%= f.label :content, "內文"%>
 <%= f.text_area :content %>
