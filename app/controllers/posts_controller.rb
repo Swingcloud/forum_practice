@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 			@post = Post.new
 		end
 			@posts = Post.all
+
+			
 	end
 	#GET posts/new
 	def new 

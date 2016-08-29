@@ -1,8 +1,21 @@
-<%= @post.title %>
-<%= simple_format @post.content %>
+<h1><%= @post.title %></h1>
+<table>
+<tr>
+	<th><%= simple_format @post.content %></th>
+
+</tr>
+<tr>
+	<td>評論人</td>
+	<td>內容</td>
+	<p>回應數：<%=@replies.count%></p>
+</tr>
 <% @replies.each do |r| %>
-	<%= r.comment %>
-	<%= r.user.nickname %>
+
+<tr>
+	<td><%= r.user.nickname %></td>
+	<td><%= r.comment %></td>
 <% end %>
+</tr>
+</table>
 <%= link_to '發表評論', new_post_response_path(@post) %>
 <%= link_to '回首頁' , posts_path %>
