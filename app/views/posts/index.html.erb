@@ -18,6 +18,8 @@
 	<% end %>
 	</tr>
 </table>
+<%= paginate @posts %>
+
 <h2>快速新增</h2>
 <%= form_for @post do |f| %>
 	<%= render :partial => "form", :locals => {:f => f} %>

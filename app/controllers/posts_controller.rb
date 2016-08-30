@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 		else
 			@post = Post.new
 		end
-			@posts = Post.all
+			@posts = Post.page(params[:page]).per(10)
 
 			
 	end
@@ -56,6 +56,13 @@ class PostsController < ApplicationController
 		@post.destroy
 		flash[:alert] = "刪除成功"
 		redirect_to posts_path
+	end
+
+	def about
+		@users=User.all
+		@posts=Post.all
+		@replies= Reply.all
+
 	end
 
 	private
