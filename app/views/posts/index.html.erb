@@ -1,27 +1,25 @@
 <h1>Swingcloud Forum</h1>
 <p><%= link_to"新增文章", new_post_path%></p>
-<table>
-<tr>
-	<th>標題</th>
-	<th>作者</th>
-	<th>回應數</th>
-	<th>編輯</th>
-	<th>刪除</th>
-</tr>
-<% @posts.each do |p| %>
-<tr>
-<td><h3><%= link_to p.title, post_path(p) %></h3></td>
-<td><h3><%= p.user.nickname %></h3></td>
-<td><%= p.replies.count %></td>
-<td><%= link_to "編輯", edit_post_path(p) %></td>
-<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
-<% end %>
-</tr>
+<table class="table table-striped">
+	<tr>
+		<th>標題</th>
+		<th>作者</th>
+		<th>回應數</th>
+		<th>編輯</th>
+		<th>刪除</th>
+	</tr>
+	<% @posts.each do |p| %>
+	<tr>
+		<td><h3><%= link_to p.title, post_path(p) %></h3></td>
+		<td><h3><%= p.user.nickname %></h3></td>
+		<td><%= p.replies.count %></td>
+		<td><%= link_to "編輯", edit_post_path(p) %></td>
+		<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
+	<% end %>
+	</tr>
 </table>
 <h2>快速新增</h2>
 <%= form_for @post do |f| %>
-
-		<%= render :partial => "form", :locals => {:f => f} %>
-
-    <%= f.submit "送出" , :class =>"btn btn-primary"%>
+	<%= render :partial => "form", :locals => {:f => f} %>
+	<%= f.submit "送出" , :class =>"btn btn-primary"%>
 <% end %>
