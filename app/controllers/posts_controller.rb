@@ -10,7 +10,13 @@ class PostsController < ApplicationController
 		else
 			@post = Post.new
 		end
-			@posts = Post.page(params[:page]).per(10)
+		if params[:order]
+			sort_by = (params[:order] == 'replies_count') ? 'replies_count DESC' : 'last_replies DESC'
+  		@posts = Post.order(sort_by).page(params[:page]).per(5)
+  	else
+  		@posts = Post.page(params[:page]).per(10)
+		end
+		
 
 			
 	end

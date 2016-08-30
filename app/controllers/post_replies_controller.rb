@@ -10,6 +10,8 @@ class PostRepliesController < ApplicationController
 		@reply.user = current_user
 		if @reply.save
 			flash[:notice]= "新增成功"
+			@post.last_replies = @reply.created_at
+			@post.save
 			redirect_to post_path(@post)
 		else
 			render :action => :new

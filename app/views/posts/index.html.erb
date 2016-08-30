@@ -1,5 +1,8 @@
 <h1>Swingcloud Forum</h1>
 <p><%= link_to"新增文章", new_post_path%></p>
+<%= link_to '依照回覆數排列', posts_path( :order => "replies_count") %>
+<%= link_to '依照最後回覆時間', posts_path( :order => "last_replies") %>
+<%= link_to '原排列', posts_path %>
 <table class="table table-striped">
 	<tr>
 		<th>標題</th>
