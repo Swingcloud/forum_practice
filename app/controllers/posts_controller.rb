@@ -12,14 +12,18 @@ class PostsController < ApplicationController
 		end
 		if params[:order]
 			sort_by = (params[:order] == 'replies_count') ? 'replies_count DESC' : 'last_replies DESC'
-  		@posts = Post.order(sort_by).page(params[:page]).per(5)
+  		@posts = Post.order(sort_by).page(params[:page]).per(10)
   	else
   		@posts = Post.page(params[:page]).per(10)
 		end
-		
 
-			
+		@groups=Group.all
+		
+		if params[:groupid]
+			@posts = Post.includes(:groups).where('groups.id' => params[:groupid] ).page(params[:page]).per(10)
+		end
 	end
+
 	#GET posts/new
 	def new 
 		@post = Post.new
@@ -34,9 +38,8 @@ class PostsController < ApplicationController
 			flash[:notice]= "新增成功"
 			redirect_to post_path(@post)
 		else
-			@posts = Post.all
-			render :action => :index
-	end
+			render :action => :new
+		end
 	end
 
 	#GET /posts/:id

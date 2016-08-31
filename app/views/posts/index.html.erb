@@ -22,9 +22,17 @@
 	</tr>
 </table>
 <%= paginate @posts %>
+<br>
 
+	<% @groups.each do |g| %>
+	<%= link_to g.name, posts_path(:groupid => g) %>
+
+	<% end %>
+	
+
+	
 <h2>快速新增</h2>
-<%= form_for @post do |f| %>
+<%= form_for @post, :url => posts_path do |f| %>
 	<%= render :partial => "form", :locals => {:f => f} %>
 	<%= f.submit "送出" , :class =>"btn btn-primary"%>
 <% end %>
