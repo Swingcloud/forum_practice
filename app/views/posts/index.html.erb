@@ -23,11 +23,17 @@
 </table>
 <%= paginate @posts %>
 <br>
-
+<h3>依照分類</h3>
 	<% @groups.each do |g| %>
 	<%= link_to g.name, posts_path(:groupid => g) %>
-
 	<% end %>
+
+	<%= form_tag posts_path, :class => "form-inline", :method => :get do %>
+	<div class="form-group">
+		<%= select_tag :groupid, options_for_select(Group.all.map{|g| [g.name , g.id]},params[:groupid]), :class => "form-control" %>
+	</div>
+	<%= submit_tag "Go!" , :class => "btn btn-default"%> 
+	<%end%>
 	
 
 	
