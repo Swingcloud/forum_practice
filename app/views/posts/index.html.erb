@@ -2,12 +2,14 @@
 <p><%= link_to"新增文章", new_post_path%></p>
 <%= link_to '依照回覆數排列', posts_path( :order => "replies_count") %>
 <%= link_to '依照最後回覆時間', posts_path( :order => "last_replies") %>
+<%= link_to '依照瀏覽數進行排序', posts_path( :page_views => "page_views") %>
 <%= link_to '原排列', posts_path %>
 <table class="table table-striped">
 	<tr>
 		<th>標題</th>
 		<th>作者</th>
 		<th>回應數</th>
+		<th>瀏覽數</th>
 		<th>編輯</th>
 		<th>刪除</th>
 	</tr>
@@ -16,6 +18,7 @@
 		<td><h3><%= link_to p.title, post_path(p) %></h3></td>
 		<td><h3><%=link_to  p.user.nickname, aboutme_users_path(:user_id => p.user) %></h3></td>
 		<td><%= p.replies.count %></td>
+		<td><%= p.page_views %></td>
 		<td><%= link_to "編輯", edit_post_path(p) %></td>
 		<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
 	<% end %>

@@ -13,6 +13,8 @@ class PostsController < ApplicationController
 		if params[:order]
 			sort_by = (params[:order] == 'replies_count') ? 'replies_count DESC' : 'last_replies DESC'
   		@posts = Post.order(sort_by).page(params[:page]).per(10)
+  	elsif params[:page_views]
+  		@posts = Post.order('page_views DESC').page(params[:page]).per(10)
   	else
   		@posts = Post.page(params[:page]).per(10)
 		end
@@ -45,6 +47,8 @@ class PostsController < ApplicationController
 	#GET /posts/:id
 	def show
 		@replies = @post.replies
+		@post.page_views +=  1 
+		@post.save
 	end
 
 	def edit
@@ -81,6 +85,6 @@ class PostsController < ApplicationController
 	end
 
 	def params_permitted 
-		params.require(:post).permit(:title, :content,:group_ids => [])
+		params.require(:post).permit(:title, :content,:page_views,:group_ids => [])
 	end
 end

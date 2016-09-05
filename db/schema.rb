@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905054102) do
+ActiveRecord::Schema.define(version: 20160905083601) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160905054102) do
     t.datetime "updated_at",                null: false
     t.integer  "replies_count", default: 0
     t.datetime "last_replies"
+    t.integer  "page_views",    default: 0
   end
 
   create_table "replies", force: :cascade do |t|
