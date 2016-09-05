@@ -14,7 +14,7 @@
 	<% @posts.each do |p| %>
 	<tr>
 		<td><h3><%= link_to p.title, post_path(p) %></h3></td>
-		<td><h3><%= p.user.nickname %></h3></td>
+		<td><h3><%=link_to  p.user.nickname, aboutme_users_path(:user_id => p.user) %></h3></td>
 		<td><%= p.replies.count %></td>
 		<td><%= link_to "編輯", edit_post_path(p) %></td>
 		<td><%= link_to "刪除", post_path(p), :method => :delete%></td>

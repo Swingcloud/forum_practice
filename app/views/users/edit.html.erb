@@ -1,0 +1,16 @@
+<%= form_for @user, :method => :patch do |f| %>
+
+<% if @user.errors.any? %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>
+<div class="form-group col-lg-12">
+	<%= f.label :about_me, "關於我" %>
+	<%= f.text_field :about_me ,:class =>"form-control"%>
+</div>
+
+  <%= f.submit "送出" , :class =>"btn btn-primary"%>
+<% end %>

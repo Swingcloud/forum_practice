@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users 
+  resources :users do 
+  	collection do 
+  		get :aboutme
+  	end
+  end
   resources :posts do
   	resources :responses, :controller => 'post_replies'
 
