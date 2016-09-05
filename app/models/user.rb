@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :posts
   has_many :replies
 
+  has_many :user_postships
+  has_many :fav_posts, :through => :user_postships, :source => :post
+
   def short_name
   	self.email.split("@").first
   end

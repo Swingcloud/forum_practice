@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_post, :only => [:show, :edit, :update, :destroy]
+	before_action :set_post, :only => [:show, :edit, :update, :destroy, :favorite]
 	before_action :authenticate_user!, :except => [:index]
 
 	#GET posts/index
@@ -75,7 +75,12 @@ class PostsController < ApplicationController
 		@users=User.all
 		@posts=Post.all
 		@replies= Reply.all
+	end
 
+	def favorite
+		current_user.fav_posts << @post
+		flash[:notice] = "更新成功"
+    redirect_to post_path(@post)
 	end
 
 	private

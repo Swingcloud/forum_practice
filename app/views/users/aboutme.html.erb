@@ -3,5 +3,21 @@
 <h3>這是我的自我介紹</h3>
 <p><%= simple_format @user.about_me %></p>
 <br>
+
+<table class="table table-striped">
+	<tr>
+		<th>
+			<p>我的收藏</p>
+		</th> 
+		<% @user.fav_posts.each do |u| %>
+	</tr>
+	<tr>
+		<th>
+			<p><%= u.title %></p>
+		</th>
+	</tr>
+	<% end %>
+</table>
+
 <%= link_to '編輯簡介' , edit_user_path(@user) %>
 <%= link_to '回首頁' , posts_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905083601) do
+ActiveRecord::Schema.define(version: 20160905115919) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20160905083601) do
     t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_postships", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_user_postships_on_post_id"
+    t.index ["user_id"], name: "index_user_postships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

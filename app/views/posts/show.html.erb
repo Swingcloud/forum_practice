@@ -23,6 +23,8 @@
 		<% end %>
 		</tr>
 	</table>
+	<%= link_to '加入收藏', favorite_post_path(@post), :method => :put %>
+	<br>
 	<%= link_to '發表評論', new_post_response_path(@post) %>
 	<br>
 	<%= link_to '回首頁' , posts_path %>

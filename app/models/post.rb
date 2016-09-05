@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
 	has_many :post_groupships
 	has_many :groups, :through => :post_groupships
+	has_many :user_postships
+	has_many :users, :through => :user_postships
 	
-
 end
