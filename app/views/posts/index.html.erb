@@ -10,8 +10,8 @@
 		<th>作者</th>
 		<th>回應數</th>
 		<th>瀏覽數</th>
-		<th>編輯</th>
-		<th>刪除</th>
+		<th></th>
+		<th></th>
 	</tr>
 	<% @posts.each do |p| %>
 	<tr>
@@ -19,8 +19,12 @@
 		<td><h3><%=link_to  p.user.nickname, aboutme_users_path(:user_id => p.user) %></h3></td>
 		<td><%= p.replies.count %></td>
 		<td><%= p.page_views %></td>
-		<td><%= link_to "編輯", edit_post_path(p) %></td>
-		<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
+		<% if current_user == p.user %>
+			<td><%= link_to "編輯", edit_post_path(p) %></td>
+		<% end %>
+		<% if current_user == p.user %>
+			<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
+		<% end %>
 	<% end %>
 	</tr>
 </table>
