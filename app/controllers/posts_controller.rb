@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 		else
 			@post = Post.new
 		end
+		
 		if params[:order]
 			sort_by = (params[:order] == 'replies_count') ? 'replies_count DESC' : 'last_replies DESC'
   		@posts = Post.order(sort_by).page(params[:page]).per(10)
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
 		@groups=Group.all
 		
 		if params[:groupid]
-			@posts = Post.includes(:groups).where('groups.id' => params[:groupid] ).page(params[:page]).per(10)
+			@posts = @posts.includes(:groups).where('groups.id' => params[:groupid] ).page(params[:page]).per(10)
 		end
 	end
 

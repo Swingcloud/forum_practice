@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :posts do
     put :favorite, on: :member
+    
   	resources :responses, :controller => 'post_replies'
 
 

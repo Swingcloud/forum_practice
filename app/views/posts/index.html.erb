@@ -16,7 +16,7 @@
 	<% @posts.each do |p| %>
 	<tr>
 		<td><h3><%= link_to p.title, post_path(p) %></h3></td>
-		<td><h3><%=link_to  p.user.nickname, aboutme_users_path(:user_id => p.user) %></h3></td>
+		<td><h3><%=link_to  p.user.nickname, user_path(p.user) %></h3></td>
 		<td><%= p.replies.count %></td>
 		<td><%= p.page_views %></td>
 		<% if current_user == p.user %>
@@ -32,7 +32,7 @@
 <br>
 <h3>依照分類</h3>
 	<% @groups.each do |g| %>
-	<%= link_to g.name, posts_path(:groupid => g) %>
+	<%= link_to g.name, posts_path(:groupid => g, :order => params[:order]) %>
 	<% end %>
 
 	<%= form_tag posts_path, :class => "form-inline", :method => :get do %>

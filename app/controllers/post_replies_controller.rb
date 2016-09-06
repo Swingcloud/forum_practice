@@ -15,7 +15,7 @@ class PostRepliesController < ApplicationController
 			redirect_to post_path(@post)
 		else
 			render :action => :new
-	end
+		end
 	end
 
 
