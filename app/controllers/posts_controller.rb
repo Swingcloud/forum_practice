@@ -11,19 +11,13 @@ class PostsController < ApplicationController
 			@post = Post.new
 		end
 		
-		if params[:order]
-			sort_by = (params[:order] == 'replies_count') ? 'replies_count DESC' : 'last_replies DESC'
-  		@posts = Post.order(sort_by).page(params[:page]).per(10)
-  	elsif params[:page_views]
-  		@posts = Post.order('page_views DESC').page(params[:page]).per(10)
-  	else
-  		@posts = Post.page(params[:page]).per(10)
-		end
-
+		prepare_variable_for_index_template
+		
 		@groups=Group.all
 		
 		if params[:groupid]
-			@posts = @posts.includes(:groups).where('groups.id' => params[:groupid] ).page(params[:page]).per(10)
+			@posts = Group.find(params[:groupid]).posts.order('id ASC').page(params[:page]).per(10)
+			# @posts = @posts.includes(:groups).where('groups.id' => params[:groupid] ).page(params[:page]).per(10)
 		end
 	end
 
@@ -86,6 +80,11 @@ class PostsController < ApplicationController
 
 	private
 
+	def post_sort(sort_by)
+	 	@posts = Post.order(sort_by).page(params[:page]).per(10)
+	end
+
+
 	def set_post
 		@post = Post.find(params[:id])
 	end
@@ -93,4 +92,22 @@ class PostsController < ApplicationController
 	def params_permitted 
 		params.require(:post).permit(:title, :content,:page_views,:group_ids => [])
 	end
+
+
+	def prepare_variable_for_index_template
+		case params[:order]
+		when 'replies_count'
+		 	sort_by = 'replies_count DESC'
+		 	post_sort(sort_by)
+		when 'last_replies'
+		 	sort_by = 'last_replies DESC'
+		 	post_sort(sort_by)
+		when 'page_views'
+		 	sort_by = 'page_views DESC'
+		 	post_sort(sort_by)
+		else 
+		 	@posts = Post.page(params[:page]).per(10)
+		end	
+	end
+
 end

@@ -9,14 +9,14 @@ class Post < ApplicationRecord
 	has_many :users, :through => :user_postships
 		
 
-	#Post.order
-	def self.order 
-		puts "class"
-	end
+	# #Post.order
+	# def self.order 
+	# 	puts "class"
+	# end
 
-	#@post.order
-	def order
-		puts "instance"
-	end
+	# #@post.order
+	# def order
+	# 	puts "instance"
+	# end
 
 end
