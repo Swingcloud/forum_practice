@@ -8,6 +8,13 @@ class Post < ApplicationRecord
 	has_many :user_postships
 	has_many :users, :through => :user_postships
 		
+	def reply_user
+		c_user =[]
+      self.replies.each do |r|
+        c_user << r.user.nickname
+     	end
+    c_user = c_user.uniq
+	end
 
 	# #Post.order
 	# def self.order 
