@@ -6,8 +6,11 @@ class User < ApplicationRecord
   has_many :posts , :dependent => :destroy
   has_many :replies, :dependent => :destroy
 
-  has_many :user_postships, , :dependent => :destroy
+  has_many :user_postships, :dependent => :destroy
   has_many :fav_posts, :through => :user_postships, :source => :post
+
+  include Gravtastic
+  gravtastic
 
   def short_name
   	self.email.split("@").first

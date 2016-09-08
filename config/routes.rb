@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   	end
   end
   resources :posts do
-    put :favorite, on: :member
+    member do 
+      put :favorite
+    end
     
   	resources :responses, :controller => 'post_replies'
 
