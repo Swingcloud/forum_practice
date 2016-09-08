@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905115919) do
+ActiveRecord::Schema.define(version: 20160907142107) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(version: 20160905115919) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "replies_count", default: 0
     t.datetime "last_replies"
     t.integer  "page_views",    default: 0
+    t.boolean  "is_public",     default: false
   end
 
   create_table "replies", force: :cascade do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160905115919) do
     t.datetime "updated_at",                          null: false
     t.string   "nickname"
     t.text     "about_me"
+    t.string   "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

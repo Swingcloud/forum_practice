@@ -3,9 +3,9 @@ class Post < ApplicationRecord
 	belongs_to :user
 	has_many :replies , :dependent => :destroy
 
-	has_many :post_groupships
+	has_many :post_groupships , :dependent => :destroy
 	has_many :groups, :through => :post_groupships
-	has_many :user_postships
+	has_many :user_postships , :dependent => :destroy
 	has_many :users, :through => :user_postships
 		
 	def reply_user
