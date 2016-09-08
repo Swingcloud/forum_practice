@@ -2,5 +2,7 @@
 
 		<%= render :partial => "form", :locals => {:f => f} %>
 
-    <%= f.submit "送出" , :class =>"btn btn-primary"%>
+    <%= f.submit "正式發送" , :class =>"btn btn-primary"%>
+    <%= f.submit "改為草稿" , :class =>"btn btn-primary"%>
+    <%= f.submit "儲存草稿" , :class =>"btn btn-primary"%>
 <% end %>

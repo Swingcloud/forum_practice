@@ -25,10 +25,10 @@
         <p><%= u %></p>
       <%end%>
 		</td>
-		<% if current_user == p.user %>
+		<% if current_user == p.user || current_user.try(:admin?) %>
 			<td><%= link_to "編輯", edit_post_path(p) %></td>
 		<% end %>
-		<% if current_user == p.user %>
+		<% if current_user == p.user || current_user.try(:admin?) %>
 			<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
 		<% end %>
 	<% end %>
