@@ -6,8 +6,26 @@ class Admin::PostsController < ApplicationController
 
 
 	def index
-		@posts = Post.all
+
+    @users = User.all
+		
+    @groups=Group.all
+    
+
 	end
+
+  def bulk_update
+    ids = Array( params[:ids] )
+    users = ids.map{ |i| User.find_by_id(i)}.compact
+    #compact把nil去除
+    if  params[:commit] == "升為管理人員"
+      users.each {|u| u.update(:role => "admin")}
+    elsif params[:commit] == "刪除人員"
+      users.each { |u| u.destroy}
+    end 
+    redirect_to  admin_posts_path
+  end
+
 
 	protected
 
@@ -20,4 +38,9 @@ class Admin::PostsController < ApplicationController
     #        user_name == "username" && password == "password"
     # end
   end
+
+  def event_params
+    params.require(:user).permit(:role) 
+  end
+
 end

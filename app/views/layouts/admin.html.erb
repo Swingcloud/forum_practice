@@ -31,6 +31,7 @@
             </div>
           <% end %>
           <%= yield %>
+          <%= link_to '回首頁' ,posts_path %>
           <% if current_user && current_user.admin? %>
             <%= link_to "admin" , admin_posts_path %>
           <% end %>

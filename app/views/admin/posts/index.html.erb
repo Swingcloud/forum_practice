@@ -1,1 +1,46 @@
-This is the World of GOD!
+<h1>This is the World of GOD!</h1>
+
+
+<h3>人員清單：</h3>
+<table class="table table-striped">
+	<tr>
+		<th></th>
+		<th>暱稱</th>
+		<th>信箱</th>
+		<th>簡介</th>	
+		<th>登入次數</th>
+		<th>管理人員？</th>
+		<th>編輯簡介</th>
+	</tr>
+<%= form_tag bulk_update_admin_posts_path do %>
+	<% @users.each do |u| %>
+		<tr>
+			<td><%= check_box_tag "ids[]",u.id, false %></td>
+			<td><%= u.nickname %></td>
+			<td><%= u.email %></td>
+			<td><%= u.about_me%></td>
+			<td><%= u.sign_in_count%></td>
+			<td><%= u.role %></td>	
+			<td><%= link_to '編輯' , edit_user_path(u) %></td>
+		</tr>
+	<% end %>
+	</table>
+	<%= submit_tag "升為管理人員",:class =>"btn btn-primary"%>
+	<br>
+	<br>
+	<%= submit_tag "刪除人員",:class =>"btn btn-primary"%>
+<% end %>
+<br>
+
+<h3>依照分類</h3>
+	<% @groups.each do |g| %>
+	<%= link_to g.name, posts_path(:groupid => g, :order => params[:order]) %>
+	<% end %>
+
+	<%= form_tag posts_path, :class => "form-inline", :method => :get do %>
+	<div class="form-group">
+		<%= select_tag :groupid, options_for_select(Group.all.map{|g| [g.name , g.id]},params[:groupid]), :class => "form-control" %>
+	</div>
+	<%= submit_tag "Go!" , :class => "btn btn-default"%> 
+	<%end%>
+	

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 		
 		if @user.update(profile_permit)
 			flash[:notice]="更新成功"
-			redirect_to aboutme_users_path(:user_id => @user)
+			redirect_to user_path(@user)
 		else
 			render :action => :edit
 		end
