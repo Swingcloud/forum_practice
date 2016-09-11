@@ -11,6 +11,11 @@
 			<p class="col-lg-12">
 				<%= simple_format @post.content %>
 			</p>
+			<% if @post.image.exists? %>
+				<div>
+					<%= image_tag @post.image.url(:medium) %>	
+				</div>
+			<% end %>
 		<table class="table table-striped">
 			
 			<tr>

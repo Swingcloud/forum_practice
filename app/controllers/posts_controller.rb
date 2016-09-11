@@ -54,6 +54,9 @@ class PostsController < ApplicationController
 	end
 
 	def update
+		if params[:remove_upload_file] == "1"
+      @post.image = nil
+    end
 		
 		if @post.update(params_permitted)
 			is_draft?
@@ -94,7 +97,7 @@ class PostsController < ApplicationController
 	end
 
 	def params_permitted 
-		params.require(:post).permit(:title, :content,:page_views,:group_ids => [])
+		params.require(:post).permit(:title, :content,:page_views,:image,:group_ids => [])
 	end
 
 

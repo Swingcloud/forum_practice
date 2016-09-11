@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907142107) do
+ActiveRecord::Schema.define(version: 20160911072147) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -31,12 +31,16 @@ ActiveRecord::Schema.define(version: 20160907142107) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "replies_count", default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "replies_count",      default: 0
     t.datetime "last_replies"
-    t.integer  "page_views",    default: 0
-    t.boolean  "is_public",     default: false
+    t.integer  "page_views",         default: 0
+    t.boolean  "is_public",          default: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "replies", force: :cascade do |t|
