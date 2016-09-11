@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 	belongs_to :user
 	has_many :replies , :dependent => :destroy
+	has_many :post_likeships
+	has_many :users_liked, :through => :post_likeships, :source => :user
 
 	has_many :post_groupships , :dependent => :destroy
 	has_many :groups, :through => :post_groupships

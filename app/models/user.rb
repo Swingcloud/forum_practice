@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :posts , :dependent => :destroy
   has_many :replies, :dependent => :destroy
 
+  has_many :post_likeships
+  has_many :liked_post, :through => :post_likeships, :source => :post
+
   has_many :user_postships, :dependent => :destroy
   has_many :fav_posts, :through => :user_postships, :source => :post
 
@@ -20,6 +23,10 @@ class User < ApplicationRecord
    def admin?
     self.role == "admin"
    end
+
+  def liked_post?(post)
+    self.liked_post.include?(post)
+  end
 
    def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid

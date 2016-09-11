@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_post, :only => [:show, :edit, :update, :destroy, :favorite]
+	before_action :set_post, :only => [:show, :edit, :update, :destroy, :favorite, :like]
 	before_action :authenticate_user!, :except => [:index]
 
 	#GET posts/index
@@ -84,6 +84,32 @@ class PostsController < ApplicationController
 		flash[:notice] = "更新成功"
     redirect_to post_path(@post)
 	end
+
+	def like
+		if current_user.liked_post?(@post)
+			current_user.liked_post.delete(@post)
+		else
+			current_user.liked_post << @post
+		end
+
+		respond_to do |format|
+			format.html { redirect_to post_path(@post)}
+			format.js
+		end
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	private
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :posts do
     member do 
       put :favorite
+      post :like
     end
     
   	resources :responses, :controller => 'post_replies'

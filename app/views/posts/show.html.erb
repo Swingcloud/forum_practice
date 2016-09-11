@@ -16,6 +16,9 @@
 					<%= image_tag @post.image.url(:medium) %>	
 				</div>
 			<% end %>
+			<div class="like">
+				<%= render :partial => 'likepost' %>
+			</div>
 		<table class="table table-striped">
 			
 			<tr>

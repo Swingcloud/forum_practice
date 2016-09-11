@@ -1,0 +1,5 @@
+<% if current_user.liked_post?(@post) %>
+	$('.like input[type=submit]').val("取消讚");
+<% else %>
+	$('.like input[type=submit]').val("讚");
+<% end %>
