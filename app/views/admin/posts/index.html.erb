@@ -33,14 +33,31 @@
 <br>
 
 <h3>依照分類</h3>
+<table class="table table-striped">
+	<tr>
+		<td>群組名稱</td>
+		<td>編輯群組名稱</td>
+		<td>刪除群組</td>	
+	</tr>
 	<% @groups.each do |g| %>
-	<%= link_to g.name, posts_path(:groupid => g, :order => params[:order]) %>
+	<tr>
+	<td><%= g.name %></td>
+	<td><%= link_to '編輯', admin_posts_path(:id => g)%></td>
+	<td><%= link_to '刪除群組', admin_group_path(g), :method => :delete %></td>
+	</tr>	
 	<% end %>
+</table>
 
-	<%= form_tag posts_path, :class => "form-inline", :method => :get do %>
-	<div class="form-group">
-		<%= select_tag :groupid, options_for_select(Group.all.map{|g| [g.name , g.id]},params[:groupid]), :class => "form-control" %>
-	</div>
-	<%= submit_tag "Go!" , :class => "btn btn-default"%> 
-	<%end%>
-	
+<h2>快速新增</h2>
+<%= form_for [:admin, @group]  do |f| %>
+	<%= render :partial => "form", :locals => {:f => f} %>
+	<%= f.submit "新增/修改" , :class =>"btn btn-primary"%>
+<% end %>
+
+
+
+
+
+
+
+

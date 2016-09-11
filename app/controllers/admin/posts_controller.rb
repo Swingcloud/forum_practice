@@ -6,13 +6,18 @@ class Admin::PostsController < ApplicationController
 
 
 	def index
-
-    @users = User.all
-		
+    @users = User.all	
     @groups=Group.all
     
 
+    if params[:id]
+      @group=Group.find(params[:id])
+    else
+      @group=Group.new
+    end
+
 	end
+  
 
   def bulk_update
     ids = Array( params[:ids] )
