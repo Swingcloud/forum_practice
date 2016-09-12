@@ -1,0 +1,9 @@
+<tr id="reply-<%=r.id %>">
+	<td class="col-lg-2"><%= r.user.nickname %></td>
+	<td class="col-lg-9"><%= r.comment %></td>
+	<% if current_user == r.user || current_user.try(:admin?) %>
+		<td class="col-lg-1">
+			<%= link_to '刪除評論', post_response_path(@post,r), :method => :delete, :remote => true %>
+		</td>
+	<% end %>
+</tr>

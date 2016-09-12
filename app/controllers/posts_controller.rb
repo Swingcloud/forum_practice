@@ -47,6 +47,8 @@ class PostsController < ApplicationController
 		@replies = @post.replies
 		@post.page_views +=  1 
 		@post.save
+
+		@reply = Reply.new
 	end
 
 	def edit

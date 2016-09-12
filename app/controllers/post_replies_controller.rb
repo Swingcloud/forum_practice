@@ -12,9 +12,14 @@ class PostRepliesController < ApplicationController
 			flash[:notice]= "新增成功"
 			@post.last_replies = @reply.created_at
 			@post.save
-			redirect_to post_path(@post)
+
+			respond_to do |format|
+				format.html {redirect_to post_path(@post)}
+				format.js
+			end
+
 		else
-			render :action => :new
+			render "posts/show"
 		end
 	end
 

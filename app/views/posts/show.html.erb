@@ -19,7 +19,7 @@
 			<div class="like">
 				<%= render :partial => 'likepost' %>
 			</div>
-		<table class="table table-striped">
+		<table class="table table-striped replies-list"">
 			<p>回應數：<%=@replies.count%></p>
 			<tr>
 				<td class="col-lg-2">評論人</td>
@@ -27,17 +27,22 @@
 				<td class="col-lg-1"></td>
 			</tr>
 			<% @replies.each do |r| %>
-			<tr id="reply-<%=r.id %>">
-				<td class="col-lg-2"><%= r.user.nickname %></td>
-				<td class="col-lg-9"><%= r.comment %></td>
-				<td class="col-lg-1"><%= link_to '刪除評論', post_response_path(@post,r), :method => :delete, :remote => true %></td>
+				<%= render :partial => "post_replies/reply", :locals => {:r => r}%>
+
 			<% end %>
-			</tr>
+			
 		</table>
+	</div>
+	<%= form_for @reply,:url =>post_responses_path(@post), :remote =>true do |f| %>
+		<%= render :partial => "post_replies/form", :locals => {:f => f} %>
+		
+  <%= f.submit "送出回覆" , :class =>"btn btn-primary"%>
+ 	<%end %>
+
 		<%= link_to '加入收藏', favorite_post_path(@post), :method => :put %>
 		<br>
 		<%= link_to '發表評論', new_post_response_path(@post) %>
 		<br>
 		<%= link_to '回首頁' , posts_path %>
-	</div>
+	
 </div>

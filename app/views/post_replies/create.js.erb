@@ -1,0 +1,10 @@
+<% if @reply.valid? %>
+
+	$(".replies-list").append("<%=j render( :partial => "reply", :locals => { :r => @reply }  ) %>");
+	$("#new_reply").trigger('reset');
+
+<% else %>
+
+  alert("新增失敗!!!");
+  
+<% end %>
