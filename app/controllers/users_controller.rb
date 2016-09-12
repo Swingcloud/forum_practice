@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.includes(:liked_post).find_by_nickname(params[:id])
 	end
 
 	def edit
-		@user = User.find(params[:id])
+		@user = User.find_by_nickname(params[:id])
 	end
 
 	def update
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 		
 		if @user.update(profile_permit)
 			flash[:notice]="更新成功"
-			redirect_to user_path(@user)
+			redirect_to user_path(@user.nickname)
 		else
 			render :action => :edit
 		end

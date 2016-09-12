@@ -11,19 +11,25 @@
 		<th>回應數</th>
 		<th>瀏覽數</th>
 		<th>參與討論</th>
+		<th>誰按過讚？</th>
 		<th></th>
 		<th></th>
 	</tr>
 	<% @posts.each do |p| %>
 	<tr>
 		<td><h3><%= link_to p.title, post_path(p) %></h3></td>
-		<td><h3><%=link_to  p.user.nickname, user_path(p.user) %></h3></td>
+		<td><h3><%=link_to  p.user.nickname, user_path(p.user.nickname) %></h3></td>
 		<td><%= p.replies.count %></td>
 		<td><%= p.page_views %></td>
 		<td>
 			<% p.reply_user.each do |u| %>
         <p><%= u %></p>
       <%end%>
+		</td>
+		<td>
+			<% p.users_liked.each do |l| %>
+				<p style="border: 1px solid navy; background-color: #02ABD6; color:white; text-align:center; border-radius:5px"><%= l.nickname %></p>
+			<% end %>
 		</td>
 		<% if current_user == p.user || current_user.try(:admin?) %>
 			<td><%= link_to "編輯", edit_post_path(p) %></td>

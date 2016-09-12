@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-12">
           <% if current_user %>
-            Hi, <%=link_to current_user.nickname, user_path(current_user) %>
+            Hi, <%=link_to current_user.nickname, user_path(current_user.nickname) %>
             <%= link_to('登出', destroy_user_session_path, :method => :delete) %> 
             <%= link_to('修改密碼', edit_registration_path(:user)) %>
           <% else %>
