@@ -128,13 +128,13 @@ class PostsController < ApplicationController
 
 
 	def prepare_variable_for_index_template
-
+			@posts= Post.includes(:users_liked,:replies)
 		if current_user.try(:admin?)
-			@posts = Post.all
+			@posts = @posts.all
 		elsif current_user
-			@posts = Post.where('user_id=? OR is_public=?', current_user.id, true)
+			@posts = @posts.where('user_id=? OR is_public=?', current_user.id, true)
 		else
-			@posts = Post.where(:is_public => true)
+			@posts = @posts.where(:is_public => true)
 		end
 		case params[:order]
 		when 'replies_count'

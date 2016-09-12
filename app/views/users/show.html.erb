@@ -4,21 +4,41 @@
 <h3>這是我的自我介紹</h3>
 <p><%= simple_format @user.about_me %></p>
 <br>
-
-<table class="table table-striped">
-	<tr>
-		<th>
-			<p>我的收藏</p>
-		</th> 
-		<% @user.fav_posts.each do |u| %>
-	</tr>
-	<tr>
-		<th>
-			<p><%= u.title %></p>
-		</th>
-	</tr>
-	<% end %>
-</table>
-
-<%= link_to '編輯簡介' , edit_user_path(@user) %>
+<div class="row">
+	<div class="col-lg-6">
+		<table class="table table-striped">
+			<tr>
+				<th>
+					<p>我的收藏</p>
+				</th> 
+			</tr>
+			<% @user.fav_posts.each do |u| %>
+			<tr>	
+				<td>
+					<p><%= u.title %></p>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-lg-6">
+		<table class="table table-striped">
+			<tr>
+				<th>
+					<p>
+						按過讚的文章
+					</p>
+				</th>
+			</tr>
+			<% @user.liked_post.each do |p| %>
+			<tr>
+				<td>
+					<p><%= p.title %></p>
+				</td>	
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<%= link_to '編輯簡介' , edit_user_path(@user.nickname) %>
 <%= link_to '回首頁' , posts_path %>

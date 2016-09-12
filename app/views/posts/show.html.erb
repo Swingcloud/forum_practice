@@ -20,16 +20,18 @@
 				<%= render :partial => 'likepost' %>
 			</div>
 		<table class="table table-striped">
-			
+			<p>回應數：<%=@replies.count%></p>
 			<tr>
 				<td class="col-lg-2">評論人</td>
-				<td class="col-lg-10">內容</td>
-				<p>回應數：<%=@replies.count%></p>
+				<td class="col-lg-9">內容</td>
+				<td class="col-lg-1"></td>
+				
 			</tr>
 			<% @replies.each do |r| %>
 			<tr>
 				<td class="col-lg-2"><%= r.user.nickname %></td>
-				<td class="col-lg-10"><%= r.comment %></td>
+				<td class="col-lg-9"><%= r.comment %></td>
+				<td class="col-lg-1"><%= link_to '刪除評論', post_response_path(r), :method => :destroy %></td>
 			<% end %>
 			</tr>
 		</table>
