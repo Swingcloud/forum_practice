@@ -18,6 +18,16 @@ class PostRepliesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@reply = @post.replies.find(params[:id]).destroy
+		
+
+		respond_to do |format|
+			format.html {redirect_to post_path(@post)}
+			format.js
+		end
+	end
+
 
 
 
