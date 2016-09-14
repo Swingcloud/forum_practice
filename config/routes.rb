@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   resources :posts do
     member do 
-      put :favorite
+      post :favorite
       post :like
     end
     

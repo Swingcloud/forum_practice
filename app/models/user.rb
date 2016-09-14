@@ -28,6 +28,10 @@ class User < ApplicationRecord
     self.liked_post.include?(post)
   end
 
+  def faved_post?(post)
+    self.fav_posts.include?(post)
+  end
+
    def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )

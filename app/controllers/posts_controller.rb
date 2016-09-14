@@ -82,9 +82,16 @@ class PostsController < ApplicationController
 	end
 
 	def favorite
-		current_user.fav_posts << @post
-		flash[:notice] = "更新成功"
-    redirect_to post_path(@post)
+		if current_user.faved_post?(@post)
+			current_user.fav_posts.delete(@post)
+		else
+			current_user.fav_posts << @post
+		end
+    
+    respond_to do |format|
+    	format.html { redirect_to post_path(@post) }
+    	format.js
+    end
 	end
 
 	def like

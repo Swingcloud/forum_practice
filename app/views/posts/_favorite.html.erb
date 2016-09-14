@@ -1,0 +1,5 @@
+<% if current_user.faved_post?(@post) %>
+	<%= button_to "取消訂閱" , favorite_post_path(@post),:class =>"btn btn-primary", :remote =>true %>
+<% else %>
+	<%= button_to "訂閱" , favorite_post_path(@post),:class =>"btn btn-primary", :remote =>true %>
+<% end %>

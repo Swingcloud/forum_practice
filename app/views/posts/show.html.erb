@@ -38,11 +38,14 @@
 		
   <%= f.submit "送出回覆" , :class =>"btn btn-primary"%>
  	<%end %>
-
-		<%= link_to '加入收藏', favorite_post_path(@post), :method => :put %>
-		<br>
-		<%= link_to '發表評論', new_post_response_path(@post) %>
-		<br>
-		<%= link_to '回首頁' , posts_path %>
+ 	<br>
+		
+	<div class="fav-post">
+		<%= render :partial => 'favorite' %>
+	</div>
+	<br>
+	<%= link_to '發表評論', new_post_response_path(@post) %>
+	<br>
+	<%= link_to '回首頁' , posts_path %>
 	
 </div>
