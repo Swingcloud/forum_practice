@@ -11,6 +11,27 @@ class Post < ApplicationRecord
 	has_many :groups, :through => :post_groupships
 	has_many :user_postships , :dependent => :destroy
 	has_many :users, :through => :user_postships
+	has_many :taggings
+	has_many :tags, :through => :taggings
+
+	def tag_list
+		self.tags.map{ |t| t.name }.join(",")
+	end
+
+	def tag_list=(str)
+		ids = str.split(',').map do |tag_name|
+			tag_name = tag_name.strip.downcase
+			tag = Tag.find_by_name(tag_name) || Tag.create(:name => tag_name)
+			tag.id
+		end
+
+		self.tag_ids = ids
+	end
+
+
+
+
+
 		
 	def reply_user
 		c_user =[]

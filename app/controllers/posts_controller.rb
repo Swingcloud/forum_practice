@@ -132,7 +132,7 @@ class PostsController < ApplicationController
 	end
 
 	def params_permitted 
-		params.require(:post).permit(:title, :content,:page_views,:image,:group_ids => [])
+		params.require(:post).permit(:title, :content,:page_views,:image,:tag_list,:group_ids => [])
 	end
 
 
@@ -145,6 +145,7 @@ class PostsController < ApplicationController
 		else
 			@posts = @posts.where(:is_public => true)
 		end
+
 		case params[:order]
 		when 'replies_count'
 		 	sort_by = 'replies_count DESC'
@@ -156,6 +157,11 @@ class PostsController < ApplicationController
 		 	sort_by = 'page_views DESC'
 		 	post_sort(sort_by)
 		end	
+
+		if params[:tag]
+			tag =Tag.find_by_name(params[:tag])
+			@posts = tag.posts
+		end
 	end
 
 	def is_draft?
