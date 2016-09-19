@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+
+
+	def index 
+		@users = User.all
+	end
 
 	def show
+		
 		@user = User.includes(:liked_post).find_by_nickname(params[:id])
 	end
 
@@ -18,6 +25,17 @@ class UsersController < ApplicationController
 			render :action => :edit
 		end
 	end
+
+	def switch
+    user = User.find( params[:id] )
+    reset_session
+    session[:user_id] = user.id
+
+    render :text => "this is bad"
+  end
+
+
+
 
 	private
 

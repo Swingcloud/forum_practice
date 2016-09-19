@@ -19,7 +19,7 @@
 
 <div class="from-group col-lg-12">
 	<%= f.label :tag_list, "標籤"%>
-	<%= f.select :tag_list, Tag.all.map{ |x| [x.name, x.name] },{},{:multiple => true}%>
+	<%= f.select :tag_list, Tag.all.map{ |x| [x.name, x.name] },{},{:multiple => true,:class =>"form-control"}%>
 	<%#= f.text_field :tag_list ,:class =>"form-control"%>
 </div>
 <div class="form-group col-lg-12">

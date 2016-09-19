@@ -6,14 +6,14 @@ Rails.application.routes.draw do
       post :favorite
       post :like
     end
-    
-  	resources :responses, :controller => 'post_replies'
-
-
+    resources :responses, :controller => 'post_replies'
   	collection do
   		get :about
   	end
   end
+
+  get '/switch' => 'users#switch'
+  resources :friendships
 
   namespace :admin do
     resources :groups

@@ -1,0 +1,5 @@
+<h1>會員清單</h1>
+
+<% @users.each do |u| %>
+	<%= link_to u.nickname, user_path(u.nickname) %>
+<% end %>
