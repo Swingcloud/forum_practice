@@ -132,7 +132,7 @@ class PostsController < ApplicationController
 	end
 
 	def params_permitted 
-		params.require(:post).permit(:title, :content,:page_views,:image,:tag_list,:group_ids => [])
+		params.require(:post).permit(:title, :content,:page_views,:image, {:tag_list =>[]}  ,{:group_ids => []})
 	end
 
 

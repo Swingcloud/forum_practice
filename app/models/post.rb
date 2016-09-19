@@ -15,11 +15,11 @@ class Post < ApplicationRecord
 	has_many :tags, :through => :taggings
 
 	def tag_list
-		self.tags.map{ |t| t.name }.join(",")
+		self.tags.map{ |tag| tag.name}
 	end
 
-	def tag_list=(str)
-		ids = str.split(',').map do |tag_name|
+	def tag_list=(arr)
+		ids = arr.map do |tag_name|
 			tag_name = tag_name.strip.downcase
 			tag = Tag.find_by_name(tag_name) || Tag.create(:name => tag_name)
 			tag.id
