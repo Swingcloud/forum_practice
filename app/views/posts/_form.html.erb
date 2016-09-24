@@ -1,6 +1,6 @@
-<% if @post.errors.any? %>
+<% if f.errors.any? %>
       <ul>
-      <% @post.errors.full_messages.each do |msg| %>
+      <% f.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
