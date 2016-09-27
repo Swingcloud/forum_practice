@@ -1,10 +1,4 @@
-<% if f.errors.any? %>
-      <ul>
-      <% f.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-<% end %>
+
 <div class="form-group col-lg-12">
 	<%= f.label :title, "標題" %>
 	<%= f.text_field :title ,:class =>"form-control"%>

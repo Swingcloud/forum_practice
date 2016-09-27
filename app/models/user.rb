@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable ,:omniauth_providers => [:facebook]
+         :omniauthable ,:omniauth_providers => [:facebook, :google_oauth2]
   has_many :posts , :dependent => :destroy
   has_many :replies, :dependent => :destroy
 
@@ -69,7 +69,7 @@ class User < ApplicationRecord
     self.fav_posts.include?(post)
   end
 
-   def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
     if user
@@ -98,5 +98,20 @@ class User < ApplicationRecord
     #user.fb_raw_data = auth
     user.save!
     return user
-   end
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(:email => data["email"]).first
+
+    # Uncomment the section below if you want users to be created if they don't exist
+    unless user
+      user = User.create(name: data["name"],
+             email: data["email"],
+             password: Devise.friendly_token[0,20])
+    end
+    user
+  end
+
+
 end

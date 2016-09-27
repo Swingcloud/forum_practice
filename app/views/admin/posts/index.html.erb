@@ -21,7 +21,7 @@
 			<td><%= u.about_me%></td>
 			<td><%= u.sign_in_count%></td>
 			<td><%= u.role %></td>	
-			<td><%= link_to '編輯' , edit_user_path(u) %></td>
+			<td><%= link_to '編輯' , edit_user_path(u.nickname) %></td>
 		</tr>
 	<% end %>
 	</table>
