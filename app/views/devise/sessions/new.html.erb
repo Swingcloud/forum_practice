@@ -30,8 +30,13 @@
     <%= f.submit "Log in" , :class => "btn btn-default" %>
   </div>
 <% end %>
-<%= link_to "使用Facebook註冊", user_facebook_omniauth_authorize_path , :class =>"btn btn-primary" %>
-<%= link_to "使用Google註冊", user_google_oauth2_omniauth_authorize_path, :class =>"btn btn-primary" %>
+<%= link_to user_facebook_omniauth_authorize_path, :class =>"btn btn-primary devise-btn" do %>
+  使用<i class='icon-facebook'></i>登入
+<% end %>
+
+<%= link_to user_google_oauth2_omniauth_authorize_path, :class =>"btn btn-primary devise-btn" do%>
+  使用<i class='icon-google'></i>登入
+<% end %>
 <br>
 
 

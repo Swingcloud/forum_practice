@@ -1,3 +1,35 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h1 {
+	font-size:50px;
+	
+}
+
+h1>a {
+	text-shadow: 1px 1px 2px grey;
+	color: black;
+}
+
+h1>a:hover{
+	text-decoration: none;
+	color: #0072BB;
+	text-shadow: 1px 1px 2px #0072BB;
+
+}
+
+.sort a {
+	color:black;
+}
+
+.sort a:hover{
+	text-decoration: none;
+	color:grey;
+}
+
+.sort-opt{
+	padding-bottom: 20px;
+}
+

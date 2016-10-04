@@ -1,9 +1,19 @@
 <h1><%= link_to 'Swingcloud Forum' , posts_path%> </h1>
-<p><%= link_to"新增文章", new_post_path%></p>
-<%= link_to '依照回覆數排列', posts_path( :order => "replies_count") %>
-<%= link_to '依照最後回覆時間', posts_path( :order => "last_replies") %>
-<%= link_to '依照瀏覽數進行排序', posts_path( :order => "page_views") %>
-<%= link_to '原排列', posts_path %>
+	<div class="sort">
+		<div class="pull-left">
+			<%= link_to  new_post_path do %>
+				<i class='icon-pencil'></i>新增文章
+			<% end %>
+		</div>
+		<div class="pull-right">
+			<%= link_to '依照回覆數排列', posts_path( :order => "replies_count") %>
+			<%= link_to '依照最後回覆時間', posts_path( :order => "last_replies") %>
+			<%= link_to '依照瀏覽數進行排序', posts_path( :order => "page_views") %>
+			<%= link_to '原排列', posts_path %>
+		</div>
+	</div>
+	<div class="clearfix sort-opt"></div>
+
 <table class="table table-striped">
 	<tr>
 		<th>標題</th>
@@ -38,10 +48,18 @@
 			<% end %>
 		</td>	
 		<% if current_user == p.user || current_user.try(:admin?) %>
-			<td><%= link_to "編輯", edit_post_path(p) %></td>
+			<td>
+				<%= link_to  edit_post_path(p) do %>
+					<i class='icon-pencil'></i>編輯
+				<% end %>
+			</td>
 		<% end %>
 		<% if current_user == p.user || current_user.try(:admin?) %>
-			<td><%= link_to "刪除", post_path(p), :method => :delete%></td>
+			<td>
+				<%= link_to post_path(p), :method => :delete do%>
+					<i class='icon-trash'></i>刪除
+					<% end %>
+			</td>
 		<% end %>
 	<% end %>
 	</tr>

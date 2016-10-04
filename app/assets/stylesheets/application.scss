@@ -3,3 +3,34 @@
 @import "bootstrap";
 @import "select2";
 @import "select2-bootstrap";
+@import "posts.scss";
+@import "fontello.css";
+
+.header{
+	background-color: #0072BB;
+	height:50px;
+	box-shadow: 0 0 10px grey;
+	color: white;
+}
+
+.header a {
+	color: white;
+	font-size: 15px;
+}
+
+.header a:hover{
+	color: #F5F1E3;
+}
+
+.header .container{
+	position:relative;
+	top:14px;
+}
+
+.header .nav a{
+	padding-right:10px;
+}
+
+.devise-btn a{
+	padding-right: 10px;
+}
