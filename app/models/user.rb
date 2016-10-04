@@ -72,7 +72,6 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
-    byebug
     if user
       user.fb_token = auth.credentials.token
       #user.fb_raw_data = auth
