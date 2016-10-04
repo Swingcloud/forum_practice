@@ -1,34 +1,47 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html =>{ :class => "form-horizontal"}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :email ,"E-mail", :class =>"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.email_field :email, autofocus: true , :class => "form-control"%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname %>
+  <div class="form-group">
+    <%= f.label :nickname , "暱稱" ,:class =>"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :nickname, :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <%= f.label :password , "密碼"%>
+      <% if @minimum_password_length %>
+        <em>(至少 <%= @minimum_password_length %> 字元)</em>
+      <% end %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :password_confirmation ,"密碼確認", :class =>"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="form-group">
+    <%= f.submit "Sign up", :class => "btn btn-default" %>
   </div>
 <% end %>
+
+<%= link_to "使用Facebook註冊", user_facebook_omniauth_authorize_path, :class =>"btn btn-primary" %> 
+<%= link_to "使用Google註冊", user_google_oauth2_omniauth_authorize_path, :class =>"btn btn-primary" %><br>
 
 <%= render "devise/shared/links" %>
