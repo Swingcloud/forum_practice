@@ -6,7 +6,7 @@ set :application, 'Forum_practice'
 set :repo_url, 'git@github.com:Swingcloud/forum_practice.git'
 set :keep_releases, 5 
 set :deploy_to, '/home/deploy/forum_practice'
-append :linked_files, 'config/database.yml', 'config/secrets.yml','config/facebook.yml'
+append :linked_files, 'config/database.yml', 'config/secrets.yml','config/facebook.yml','config/google.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 set :passenger_restart_with_touch, true
 # Default branch is :master

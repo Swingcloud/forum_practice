@@ -14,10 +14,10 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   fb_config =Rails.application.config_for(:facebook)
-  config.omniauth :facebook, fb_config["app_id"], fb_config["secret"], :scope => 'public_profile,email', :info_fields => 'email,name', callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, fb_config["app_id"], fb_config["secret"], :scope => 'public_profile,email', :info_fields => 'email,name', callback_url: "http://www.swingcloud.co/users/auth/facebook/callback"
   
-
-  config.omniauth :google_oauth2, "234630365689-j972mk6ql0l6jhftm14afg7umt9tm4ud.apps.googleusercontent.com", "vvyKkVQ7CNZssgIN6fymHLl4", { }
+  gl_config =Rails.application.config_for(:google)
+  config.omniauth :google_oauth2, gl_config["app_id"], gl_config["secret"] , { }
 
 
   # Configure the class responsible to send e-mails.
